@@ -1,10 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "./header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/csk.svg";
 import { auth } from "../../firebase/firebase.utils";
 
-import { withRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Header = ({currentUser}) => {
 	return (
@@ -33,4 +34,8 @@ const Header = ({currentUser}) => {
 	);
 };
 
-export default withRouter(Header);
+const mapStateToProps = (state) => {
+	return {currentUser: state.user.currentUser}
+}
+
+export default connect(mapStateToProps)(Header);
